@@ -103,7 +103,7 @@ $$
 
 inter-slot frequency hopping就没有符号的划分了，因为是整个slot上的。
 
-对于inter-slot frequency hopping，如果*PUSCH-DMRS-Bundling*使能，并且不满足（RAR UL grant或TC-RNTI加扰的DCI format 0_0调度），在slot $n_s^\mu$上的起始RB计算为：
+对于inter-slot frequency hopping，如果*PUSCH-DMRS-Bundling*使能，并且不满足（RAR UL grant或TC-RNTI加扰的DCI format 0\_0调度），在slot $n_s^\mu$上的起始RB计算为：
 
 $$
 \mathrm{RB}_{\text {start }}\left(n_s^\mu\right)=\left\{\begin{array}{cc}
