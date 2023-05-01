@@ -84,35 +84,35 @@ R15中最大重复次数是8，R16中最大重复次数是16，R17中最大重�
 #### 跳频的方法
 对于intra-slot frequency hopping，计算如下：
 
-$$
+$
 \mathrm{RB}_{\text {start }}=\left\{\begin{array}{cc}
 \mathrm{RB}_{\text {start }} & i=0 \\
 \left(\mathrm{RB}_{\text {start}}+\mathrm{RB}_{\text {offset}}\right) \bmod N_{BWP}^{\text {size}} & i=1
 \end{array}\right.
-$$
+$
 
 $i=0$和$i=1$分别表示第一跳和第二跳。按照上面的跳频偏移值的选择就可以得到两跳的RB位置（注意，这里的RB位置只是起始位置，后面的没说明，但是默认不会超过BWP）。
 两跳的符号划分是这样的，第一跳的符号数是$\left\lfloor N_{symb}^{PUSCH,s} / 2\right\rfloor$，第二跳的符号数是$N_{symb}^{PUSCH,s}-\left\lfloor N_{symb}^{PUSCH,s} / 2\right\rfloor$，这里的$N_{symb}^{PUSCH,s}$表示一个slot上分配给PUSCH传输的符号数。
 
 对于inter-slot frequency hopping，如果*PUSCH-DMRS-Bundling*不使能，或者，对于RAR UL grant或TC-RNTI加扰的DCI format 0_0调度的inter-slot frequency hopping，在slot $n_s^\mu$上的起始RB计算为：
 
-$$
+$
 \mathrm{RB}_{\text {start }}\left(n_s^\mu\right)=\left\{\begin{array}{cc}
 \mathrm{RB}_{\text {start }} & n_s^\mu \bmod 2=0 \\
 \left(\mathrm{RB}_{\text {start }}+\mathrm{RB}_{\text {offset }}\right) \bmod N_{B W P}^{s i z e} & n_s^\mu \bmod 2=1
 \end{array}\right.
-$$
+$
 
 inter-slot frequency hopping就没有符号的划分了，因为是整个slot上的。
 
 对于inter-slot frequency hopping，如果*PUSCH-DMRS-Bundling*使能，并且不满足（RAR UL grant或TC-RNTI加扰的DCI format 0_0调度），在slot $n_s^\mu$上的起始RB计算为：
 
-$$
+$
 \mathrm{RB}_{\text {start }}\left(n_s^\mu\right)=\left\{\begin{array}{cc}
 \mathrm{RB}_{\text {start }} & \left\lfloor\frac{n_S^\mu}{N_{F H}}\right\rfloor \bmod 2=0 \\
 \left(\mathrm{RB}_{\text {start }}+\mathrm{RB}_{\text {offset }}\right) \bmod N_{B W P}^{s i z e} & \left\lfloor\frac{n_S^\mu}{N_{F H}}\right\rfloor \bmod 2=1
 \end{array}\right.
-$$
+$
 
 $F_{FH}$是高层参数*PUSCH-Frequencyhopping-Interval*的值。
 
