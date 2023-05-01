@@ -1,14 +1,5 @@
 ---
 layout: post
-title:  "NR PUSCH Repetition"
-author: "Geoffrey Hou"
-comments: true
-tags: NR
-excerpt_separator: <!--more-->
-sticky: true
-hidden: true
-
-layout: post
 read_time: true
 show_date: true
 title:  NR PUSCH Repetition
