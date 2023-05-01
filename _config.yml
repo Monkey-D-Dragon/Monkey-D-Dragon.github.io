@@ -1,5 +1,5 @@
 # Site settings
-title: The Minimum Viable Model
+title: Long Term Learning
 description: 'Artificial Intelligence trends and concepts made easy.' # this means to ignore newlines until "baseurl:"
 permalink: ':title:output_ext'
 baseurl: "/" # the subpath of your site, e.g. /blog
@@ -29,14 +29,14 @@ author-pic: Myself_Neon_grey.jpg
 about-author: Engineer, industry executive, research enthusiast. Avid learner with diverse interests in coding, machine learning, artificial intelligence and reinforcement learning. 17+ years of experience working in multinational corporations.
 
 # Contact links
-email: armando.maynez@gmail.com # Add your Email address
+email: 957847140@qq.com # Add your Email address
 phone: # Add your Phone number
 website: https://amaynez.github.io # Add your website
-linkedin: amaynez # Add your Linkedin handle
-github: amaynez # Add your Github handle
-twitter: '@MvmThe' # Add your Twitter handle
-bandcamp: armandomaynez # Add your Bandcamp username
-stackoverflow: stackoverflow # Add your stackoverflow account
+linkedin: # Add your Linkedin handle
+github: # Add your Github handle
+twitter: # Add your Twitter handle
+bandcamp: # Add your Bandcamp username
+stackoverflow: # Add your stackoverflow account
 
 # Newsletter
 mailchimp: "https://github.us1.list-manage.com/subscribe/post?u=8ece198b3eb260e6838461a60&amp;id=397d90b5f4"
