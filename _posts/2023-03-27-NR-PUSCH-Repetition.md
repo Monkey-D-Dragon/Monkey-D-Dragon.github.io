@@ -93,21 +93,25 @@ $i=0$和$i=1$分别表示第一跳和第二跳。按照上面的跳频偏移值�
 两跳的符号划分是这样的，第一跳的符号数是$\left\lfloor N_{symb}^{PUSCH,s} / 2\right\rfloor$，第二跳的符号数是$N_{symb}^{PUSCH,s}-\left\lfloor N_{symb}^{PUSCH,s} / 2\right\rfloor$，这里的$N_{symb}^{PUSCH,s}$表示一个slot上分配给PUSCH传输的符号数。
 
 对于inter-slot frequency hopping，如果*PUSCH-DMRS-Bundling*不使能，或者，对于RAR UL grant或TC-RNTI加扰的DCI format 0_0调度的inter-slot frequency hopping，在slot $n_s^\mu$上的起始RB计算为：
+
 $$
 \mathrm{RB}_{\text {start }}\left(n_s^\mu\right)=\left\{\begin{array}{cc}
 \mathrm{RB}_{\text {start }} & n_s^\mu \bmod 2=0 \\
 \left(\mathrm{RB}_{\text {start }}+\mathrm{RB}_{\text {offset }}\right) \bmod N_{B W P}^{s i z e} & n_s^\mu \bmod 2=1
 \end{array}\right.
 $$
+
 inter-slot frequency hopping就没有符号的划分了，因为是整个slot上的。
 
 对于inter-slot frequency hopping，如果*PUSCH-DMRS-Bundling*使能，并且不满足（RAR UL grant或TC-RNTI加扰的DCI format 0_0调度），在slot $n_s^\mu$上的起始RB计算为：
+
 $$
 \mathrm{RB}_{\text {start }}\left(n_s^\mu\right)=\left\{\begin{array}{cc}
 \mathrm{RB}_{\text {start }} & \left\lfloor\frac{n_S^\mu}{N_{F H}}\right\rfloor \bmod 2=0 \\
 \left(\mathrm{RB}_{\text {start }}+\mathrm{RB}_{\text {offset }}\right) \bmod N_{B W P}^{s i z e} & \left\lfloor\frac{n_S^\mu}{N_{F H}}\right\rfloor \bmod 2=1
 \end{array}\right.
 $$
+
 $F_{FH}$是高层参数*PUSCH-Frequencyhopping-Interval*的值。
 
 ## 时域资源分配
@@ -119,9 +123,11 @@ $F_{FH}$是高层参数*PUSCH-Frequencyhopping-Interval*的值。
 
 当UE被一个DCI的'*CSI request*'字段调度发送一个有CSI上报没有TB的PUSCH时，该DCI的'*Time domain resource assignment*'字段值$m$，提供了一个资源分配表的行索引$m+1$。
 这个索引行定义了：符号的起始和长度指示*SLIV*或直接给出起始符号*S*和符号长度*L*，PUSCH的映射类型，$K_2$的值通过下面公式得到：
+
 $$
 K_2=\max _j Y_j(m+1)
 $$
+
 这里的$Y_j, j=0, \ldots, N_{\text {Rep }}-1$是$N_{\text {Rep }}$触发的CSI上报设置，表示下面高层参数的相应列表实例：
 - *reportSlotOffsetListDCI-0-2*或者*reportSlotOffsetListDCI-0-2-r17*（如果通过DCI format 0_2调度PUSCH，并且该配置了这个参数）；
 - *reportSlotOffsetListDCI-0-1*或者*reportSlotOffsetListDCI-0-1-r17*（如果通过DCI format 0_1调度PUSCH，并且该配置了这个参数）；
@@ -130,16 +136,21 @@ $$
 
 UE发送PUSCH的slot $K_s$和$K_2$有关，并且通过下面公式计算：
 如果至少有一个调度小区的UE配置了参数*ca-SlotOffset*，计算如下：
+
 $$
 K_s=\left\lfloor n \right\rfloor
 $$
+
 $$
 K_s=\left\lfloor n \cdot \frac{2^{\mu P U S C H}}{2^{\mu_{P D C C H}}}\right\rfloor+K_2+\left\lfloor\left(\frac{N_{\text {slot, offset, }, P D C C H}^{C A}}{2^{\mu_0 f f s e t, P D C C H}}-\frac{N_{\text {slot, offset, }, P U S C H}^{C A}}{2^{\mu_0 \text { offet }, \text { PUSCH }}}\right) \cdot 2^{\mu_{P U S C H}}\right\rfloor
 $$
+
 否则，计算如下：
+
 $$
 K_s=\left\lfloor n \cdot \frac{2^{\mu P U S C H}}{2^{\mu P D C C H}}\right\rfloor+K_2+K_{\text {offset }} \cdot \frac{2^{\mu \text { PUSCH }}}{2^{\mu_{\text {off set }}}}
 $$
+
 这里的$K_{\text {offset }}$见38213/4.2，$\mu_{K_{\text {offset }}}$是$K_{\text {offset }}$的子载波间隔配置，对FR1，取0。$n$是调度DCI的slot，$K_2$和PUSCH的参数集有关，$\mu_{\text {PUSCH}}$和$\mu_{\text {PDCCH}}$是PUSCH和PDCCH的子载波间隔配置，并且要求调度的DCI不是由TC-RNTI CRC加扰的DCI format 0_0。
 
 $N_{\text {slot, offset, PDCCH }}^{\mathrm{CA}}$和$\mu_{\text {offset,PDCCH}}$是小区接收到的PDCCH的$N_{\text {slot, offset}}^{\mathrm{CA}}$和$\mu_{\text {offset}}$，由*ca-SlotOffset*配置。对应的PUSCH的参数由发送PUSCH的小区的参数*ca-SlotOffset*配置，见38211/4.5。
@@ -154,13 +165,17 @@ $N_{\text {slot, offset, PDCCH }}^{\mathrm{CA}}$和$\mu_{\text {offset,PDCCH}}$�
 
 对于PUSCH repetition Type A和TB processing over multiple slots，起始符号*S*相对于slot的起始位置，连续符号数*L*从*S*开始计数，*S* *L*和*SLIV*之间的关系为：
 if $(L-1) \leq 7$，then
+
 $$
 SLIV=14 \cdot(L-1)+S
 $$
+
 else
+
 $$
 SLIV=14 \cdot(14-L+1)+(14-1-S)
 $$
+
 并且$0<L \leq 14-S$。
 
 对于PUSCH repetition Type B，起始符号*S*相对于slot起始位置，连续符号数*L*从*S*开始技术，并且这两个参数由资源分配表中的*startSymbol*和*length*确定（也就是对PUSCH repetition Type B，不能通过*SLIV*的方式配置）。
