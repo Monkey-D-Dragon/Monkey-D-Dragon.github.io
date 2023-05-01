@@ -77,6 +77,7 @@ R15中最大重复次数是8，R16中最大重复次数是16，R17中最大重�
 
 在R17的DCI中有这样一段说明
 ![image](./assets/img/posts/20230327/DCI.png)
+
 也就是如果*frequencyHoppingOffsetLists*包含两个偏移值，$N_{UL_hop}=1$；如果*frequencyHoppingOffsetLists*包含四个偏移值，$N_{UL_hop}=2$。$N_{UL_hop}$配合下面这个表使用
 ![image](./assets/img/posts/20230327/Table8.3-1.png)
 
