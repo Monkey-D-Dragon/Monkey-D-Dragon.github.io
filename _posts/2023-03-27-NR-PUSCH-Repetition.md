@@ -76,9 +76,9 @@ R15中最大重复次数是8，R16中最大重复次数是16，R17中最大重�
 - 如果激活的BWP大小大于等于50个PRB，那么可以配置4个偏移值，并选择一个使用。
 
 在R17的DCI中有这样一段说明
-![image](https://user-images.githubusercontent.com/115327603/228099557-d39025e4-73b9-477a-b7ab-ce2be60c0f40.png)
+![image](./assets/img/posts/20230327/DCI.png)
 也就是如果*frequencyHoppingOffsetLists*包含两个偏移值，$N_{UL_hop}=1$；如果*frequencyHoppingOffsetLists*包含四个偏移值，$N_{UL_hop}=2$。$N_{UL_hop}$配合下面这个表使用
-![image](https://user-images.githubusercontent.com/115327603/228099973-f123eb41-cb6f-44b8-998a-ee4fbf657d94.png)
+![image](./assets/img/posts/20230327/Table8.3-1.png)
 
 #### 跳频的方法
 对于intra-slot frequency hopping，计算如下：
@@ -168,7 +168,7 @@ $$
 对于PUSCH repetition Type B，PUSCH映射类型只能是Type B。
 
 这是协议定义合法的起始符号和符号长度组合。
-![image](https://user-images.githubusercontent.com/115327603/227889228-a6e8fa32-fdc4-4719-8440-8f18b823753a.png)
+![image](./assets/img/posts/20230327/fuhaochangdu.png)
 
 对于TB processing over multiple slots，当使用C-RNTI，MCS-C-RNTI或CS-RNTI加扰CRC（NDI=1）的DCI format 0_1或0_2调度发送PUSCH时，有以下要求：
 - 用于TBS determination的slot个数$N$由*numberOfSlotsTBoMS*指示。
@@ -185,7 +185,7 @@ $$
 
 对于PUSCH repetition type A，RAR UL grant调度发送PUSCH时，MCS信息字段的2 MSBs提供了一个codepoint，用来确定重复次数$K$，配合下面的表格使用（用于TBS determination的slot个数$N=1$）。
 对于PUSCH repetition type A，TC RNTI加扰CRC的DCI format 0_0调度发送PUSCH时，MCS信息字段的2 MSBs提供了一个codepoint，用来确定重复次数$K$，配合下面的表格使用（用于TBS determination的slot个数$N=1$）。
-![image](https://user-images.githubusercontent.com/115327603/227894911-46b3adbe-ad19-4896-824e-47dd7f9d87b0.png)
+![image](./assets/img/posts/20230327/Table6.1.2.1-1A.png)
 
 如果配置了*pusch-TimeDomainAllocationListForMultiPUSCH*，UE不希望配置*pusch-AggregationFactor*。
 
@@ -219,7 +219,7 @@ If a UE would transmit a PUSCH of PUSCH repetition Type A when AvailableSlotCoun
 
 对于DCI format 0_1或0_2或0_0 with CRC scrambled by TC-RNTI调度的PUSCH，该TB的第$n$次传输时刻使用的冗余版本由下表确定，其中$\mathrm{n}=0,1, \ldots N \cdot K-1$。
 对于RAR UL grant调度的PUSCH，该TB的第$n$次传输时刻使用的冗余版本由下表的第一行确定，其中$\mathrm{n}=0,1, \ldots N \cdot K-1$。
-![image](https://user-images.githubusercontent.com/115327603/227907533-db5ae439-9032-4d90-ad56-35618a7db7b3.png)
+![image](./assets/img/posts/20230327/Table6.1.2.1-2.png)
 
 当在non-initial UL BWP上发送MsgA PUSCH时，如果配置了*startSymbolAndLengthMsgA-PO*，那么UE根据*startSymbolAndLengthMsgA-PO*确定*S*和*L*。
 发送MsgA PUSCH时，如果没有配置*startSymbolAndLengthMsgA-PO*，并且如果*PUSCH-ConfigCommon*提供了TDRA列表*PUSCH-TimeDomainResourceAllocationList*，那么UE应该使用*msgA-PUSCH-TimeDomainAllocation*只是使用列表中的哪个值。如果没有提供*PUSCH-TimeDomainResourceAllocationList*，俺么UE应该使用表格6.1.2.1.1-2和6.1.2.1.1-3中的*S*和*L*（*msgA-PUSCH-TimeDomainAllocation*指示使用列表中的哪个值），关于PUSCH传输的时间偏移见38213。
@@ -283,5 +283,5 @@ UE应该在实际重复上重复该TB。第$n$次实际重复使用的冗余版�
 对于PUSCH repetition Type A和PUSCH repetition Type B，当DCI format 0_1或DCI format 0_2为*SRS resource set indicator*指示了codepoint "10"或"11"时，第$n$次传输时机（PUSCH repetition Type A）使用的冗余版本$\mathrm{n}=0,1, \ldots K-1$，或者第$n$次实际重复（PUSCH repetition Type B，包含被丢掉的实际传输）根据表格6.1.2.1-2和6.1.2.1-3确定。
 For all PUSCH repetitions associated with the SRS resource set of the first transmission occasion or actual repetition, the redundancy version to be applied is derived according to Table 6.1.2.1-2, where n is counted only considering PUSCH transmission occasions or actual repetitions associated with the same SRS resource set as the first transmission occasion or actual repetition.
 The redundancy version for PUSCH transmission occasions or actual repetitions that are associated with an SRS resource set other than the SRS resource set of the first transmission occasion or actual repetition is derived according to Table 6.1.2.1-3, where additional shifting operation for each redundancy version is configured by higher layer parameter sequenceOffsetforRV in PUSCH-Config and  is counted only considering PUSCH transmission occasions or actual repetitions that are not associated with the SRS resource set of the first transmission occasion or actual repetition.
-![image](https://user-images.githubusercontent.com/115327603/227929122-ff0f46c2-878e-4863-b08d-e9b419a943f0.png)
+![image](./assets/img/posts/20230327/Table6.1.2.1-3.png)
 
